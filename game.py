@@ -13,11 +13,35 @@ import numpy as np
 import random
 import pygame
 import rules
+
+os.environ["SDL_VIDEO_CENTERED"]='1'
+
 Width=1920
 Height=1080
 Size=(Width, Height)
+
+
+pygame.init()
+pygame.display.set_caption("CONWAY'S GAME OF LIFE")
+screen = pygame.display.set_mode(Size)
+clock = pygame.time.Clock()
+fps = 30
+
+
 Grey =(90,90,90)
 White=(255,255,255)
 Black=(0,0,0)
 Scale=30
 Offset=1
+fps = 30
+
+Grid=rules.Board(Width, Height, Scale, Offset)
+Grid.board_seeding()
+
+run = True
+while run:
+    clock.tick(fps)
+    screen.fill(Grey)
+
+
+pygame.quit()

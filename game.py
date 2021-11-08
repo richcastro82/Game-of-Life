@@ -43,5 +43,10 @@ while run:
     clock.tick(fps)
     screen.fill(Grey)
 
+    if pygame.mouse.get_pressed()[0]:
+        mouseX, mouseY = pygame.mouse.get_pos()
+        Grid.mousePush(mouseX, mouseY)
+    pygame.display.update()
+
 
 pygame.quit()

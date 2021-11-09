@@ -37,11 +37,22 @@ fps = 30
 
 Grid=rules.Board(Width, Height, Scale, Offset)
 Grid.board_seeding()
-
+pause=False
 run = True
 while run:
     clock.tick(fps)
-    screen.fill(Grey)
+    screen.fill(Black)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            run = False
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_ESCAPE:
+                run = False
+            if event.key == pygame.K_SPACE:
+                pause = not pause
+
+    Grid.Conway(off_color=White, on_color=Grey, surface=screen, pause=pause)
 
     if pygame.mouse.get_pressed()[0]:
         mouseX, mouseY = pygame.mouse.get_pos()

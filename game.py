@@ -7,6 +7,7 @@
 # prearranged or completely random set of variables
 # until the model reaches a solid or stable state.
 
+#Import libraries
 import os
 import time
 import numpy as np
@@ -14,35 +15,32 @@ import random
 import pygame
 import rules
 
-os.environ["SDL_VIDEO_CENTERED"]='1'
+#Variables for quick changes to visuals
+ScreenFill=(255,255,255)
+LifeBlocks=(0,0,0)
+Width=840
+Height=600
+Scale=15
+Offset=1
+fps = 15
 
-Width=1920
-Height=1080
+#Initialize Pygame
 Size=(Width, Height)
-
-
 pygame.init()
-pygame.display.set_caption("CONWAY'S GAME OF LIFE")
+pygame.display.set_caption("GAME OF LIFE - Richard Castro")
 screen = pygame.display.set_mode(Size)
 clock = pygame.time.Clock()
-fps = 30
 
-
-Grey =(90,90,90)
-White=(255,255,255)
-Black=(0,0,0)
-Scale=30
-Offset=1
-fps = 30
-
+#Import the rules and run environment
 Grid=rules.Board(Width, Height, Scale, Offset)
 Grid.board_seeding()
 pause=False
 run = True
 while run:
     clock.tick(fps)
-    screen.fill(Black)
+    screen.fill(ScreenFill)
 
+#Event handlers
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
@@ -52,12 +50,12 @@ while run:
             if event.key == pygame.K_SPACE:
                 pause = not pause
 
-    Grid.Conway(off_color=White, on_color=Grey, surface=screen, pause=pause)
+    Grid.Conway(off_color=ScreenFill, on_color=LifeBlocks, surface=screen, pause=pause)
 
+#Mouse click events
     if pygame.mouse.get_pressed()[0]:
         mouseX, mouseY = pygame.mouse.get_pos()
         Grid.mousePush(mouseX, mouseY)
     pygame.display.update()
-
 
 pygame.quit()

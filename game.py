@@ -16,7 +16,7 @@ import pygame
 import rules
 
 #Variables for quick changes to visuals
-ScreenFill=(255,255,255)
+ScreenFill=(100,100,100)
 LifeBlocks=(0,0,0)
 Width=840
 Height=600

@@ -8,10 +8,7 @@
 # until the model reaches a solid or stable state.
 
 #Import libraries
-import os
 import time
-import numpy as np
-import random
 import pygame
 import rules
 
@@ -27,7 +24,7 @@ fps = 15
 #Initialize Pygame
 Size=(Width, Height)
 pygame.init()
-pygame.display.set_caption("GAME OF LIFE - Richard Castro")
+pygame.display.set_caption("Conway's Game of Life by King Castro")
 screen = pygame.display.set_mode(Size)
 clock = pygame.time.Clock()
 

@@ -1,5 +1,5 @@
 # Game of Life
-
+![Game of Life]()
 I first learned about this algorithm in school but only after seeing it in a YouTube video and learning that Dr. Conway passed away from COVID in 2020 did I decide to code the game out in python. 
  
  

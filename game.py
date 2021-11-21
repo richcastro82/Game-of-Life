@@ -13,8 +13,8 @@ import pygame
 import rules
 
 #Variables for quick changes to visuals
-ScreenFill=(100,100,100)
-LifeBlocks=(0,0,0)
+ScreenFill=(0,0,0)
+LifeBlocks=(216,251,60)
 Width=1600
 Height=900
 Scale=15
@@ -54,8 +54,9 @@ while (end_it==False):
     myfont=pygame.font.SysFont("Britannic Bold", 40)
     # nlabel=myfont.render("Welcome - Start Screen", 1, (255, 0, 0))
     for event in pygame.event.get():
-        if event.type==pygame.QUIT:
-            end_it=True
+        if event.type==pygame.KEYUP:
+            if event.key==pygame.K_SPACE:
+                end_it=True
     screen.blit(bg,(0,0))
     pygame.display.flip()
 

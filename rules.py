@@ -42,9 +42,10 @@ class Board:
             for y in range(self.columns):
                 y_pos = y * self.scale
                 x_pos = x * self.scale
-                #random_color = (random.randint(10, 255), random.randint(10, 255), random.randint(10, 255))
+                purp=(147,64,246)
+                # random_color = (random.randint(10, 255), random.randint(10, 255), random.randint(10, 255))
                 if self.grid_array[x][y] == 1:
-                    pygame.draw.rect(surface, on_color, [x_pos, y_pos, self.scale-self.offset, self.scale-self.offset])
+                    pygame.draw.rect(surface, purp, [x_pos, y_pos, self.scale-self.offset, self.scale-self.offset])
                 else:
                     pygame.draw.rect(surface, off_color, [x_pos, y_pos, self.scale-self.offset, self.scale-self.offset])
 

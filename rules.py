@@ -7,6 +7,7 @@ import numpy as np
 import random
 
 
+
 class Board:
 #   Initial Board setup class
     def __init__(self, Width, Height, Scale, Offset):

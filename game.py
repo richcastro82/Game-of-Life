@@ -15,11 +15,30 @@ import rules
 #Variables for quick changes to visuals
 ScreenFill=(100,100,100)
 LifeBlocks=(0,0,0)
-Width=840
-Height=600
+Width=1600
+Height=900
 Scale=15
 Offset=1
 fps = 15
+
+# def game_intro():
+#
+#     intro = True
+#
+#     while intro:
+#         for event in pygame.event.get():
+#             print(event)
+#             if event.type == pygame.QUIT:
+#                 pygame.quit()
+#                 quit()
+#
+#         screen.fill(ScreenFill)
+#         # largeText = pygame.font.Font('freesansbold.ttf',115)
+#         # TextSurf, TextRect = text_objects("A bit Racey", largeText)
+#         # TextRect.center = ((display_width/2),(display_height/2))
+#         # gameDisplay.blit(TextSurf, TextRect)
+#         pygame.display.update()
+#         clock.tick(15)
 
 #Initialize Pygame
 Size=(Width, Height)
@@ -27,6 +46,19 @@ pygame.init()
 pygame.display.set_caption("Conway's Game of Life by King Castro")
 screen = pygame.display.set_mode(Size)
 clock = pygame.time.Clock()
+bg = pygame.image.load("gameoflife.jpg")
+black=(0,0,0)
+end_it=False
+while (end_it==False):
+    screen.fill(ScreenFill)
+    myfont=pygame.font.SysFont("Britannic Bold", 40)
+    # nlabel=myfont.render("Welcome - Start Screen", 1, (255, 0, 0))
+    for event in pygame.event.get():
+        if event.type==pygame.QUIT:
+            end_it=True
+    screen.blit(bg,(0,0))
+    pygame.display.flip()
+
 
 #Import the rules and run environment
 Grid=rules.Board(Width, Height, Scale, Offset)

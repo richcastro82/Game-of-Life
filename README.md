@@ -1,8 +1,8 @@
-# Game of Life
 ![Game of Life](https://kingcastro.com/gameoflife_github.jpg)
 I first learned about this algorithm in school but only after seeing it in a YouTube video and learning that Dr. Conway passed away from COVID in 2020 did I decide to code the game out in python. 
  
  
+ # Game of Life
 Here is a link to the video that kick started this little project in my mind: https://www.youtube.com/watch?v=HeQX2HjkcNo
 
 

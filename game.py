@@ -21,6 +21,7 @@ Scale=15
 Offset=1
 fps = 15
 
+
 # def game_intro():
 #
 #     intro = True
@@ -40,52 +41,59 @@ fps = 15
 #         pygame.display.update()
 #         clock.tick(15)
 
-#Initialize Pygame
-Size=(Width, Height)
-pygame.init()
-pygame.display.set_caption("Conway's Game of Life by King Castro")
-screen = pygame.display.set_mode(Size)
-clock = pygame.time.Clock()
-bg = pygame.image.load("gameoflife.jpg")
-black=(0,0,0)
-end_it=False
-while (end_it==False):
-    screen.fill(ScreenFill)
-    myfont=pygame.font.SysFont("Britannic Bold", 40)
-    # nlabel=myfont.render("Welcome - Start Screen", 1, (255, 0, 0))
-    for event in pygame.event.get():
-        if event.type==pygame.KEYUP:
-            if event.key==pygame.K_SPACE:
-                end_it=True
-    screen.blit(bg,(0,0))
-    pygame.display.flip()
+
+def main():
+    #Initialize Pygame
+    Size=(Width, Height)
+    pygame.init()
+    pygame.display.set_caption("Conway's Game of Life by King Castro")
+    screen = pygame.display.set_mode(Size)
+    clock = pygame.time.Clock()
+    bg = pygame.image.load("gameoflife.jpg")
+    black=(0,0,0)
+    end_it=False
+    while (end_it==False):
+        screen.fill(ScreenFill)
+        myfont=pygame.font.SysFont("Britannic Bold", 40)
+        # nlabel=myfont.render("Welcome - Start Screen", 1, (255, 0, 0))
+        for event in pygame.event.get():
+            if event.type==pygame.KEYUP:
+                if event.key==pygame.K_SPACE:
+                    end_it=True
+        screen.blit(bg,(0,0))
+        pygame.display.flip()
 
 
-#Import the rules and run environment
-Grid=rules.Board(Width, Height, Scale, Offset)
-Grid.board_seeding()
-pause=False
-run = True
-while run:
-    clock.tick(fps)
-    screen.fill(ScreenFill)
+    #Import the rules and run environment
+    Grid=rules.Board(Width, Height, Scale, Offset)
+    Grid.board_seeding()
+    pause=False
+    run = True
+    while run:
+        clock.tick(fps)
+        screen.fill(ScreenFill)
 
-#Event handlers
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            run = False
-        if event.type == pygame.KEYUP:
-            if event.key == pygame.K_ESCAPE:
+    #Event handlers
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
                 run = False
-            if event.key == pygame.K_SPACE:
-                pause = not pause
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_ESCAPE:
+                    run = False
+                if event.key == pygame.K_SPACE:
+                    pause = not pause
 
-    Grid.Conway(off_color=ScreenFill, on_color=LifeBlocks, surface=screen, pause=pause)
+        Grid.Conway(off_color=ScreenFill, on_color=LifeBlocks, surface=screen, pause=pause)
 
-#Mouse click events
-    if pygame.mouse.get_pressed()[0]:
-        mouseX, mouseY = pygame.mouse.get_pos()
-        Grid.mousePush(mouseX, mouseY)
-    pygame.display.update()
+    #Mouse click events
+        if pygame.mouse.get_pressed()[0]:
+            mouseX, mouseY = pygame.mouse.get_pos()
+            Grid.mousePush(mouseX, mouseY)
+        pygame.display.update()
 
-pygame.quit()
+    pygame.quit()
+
+
+
+if __name__ == "__main__":
+    main()

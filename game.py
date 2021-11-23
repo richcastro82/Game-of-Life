@@ -13,8 +13,9 @@ import pygame
 import rules
 
 #Variables for quick changes to visuals
-ScreenFill=(0,0,0)
+ScreenFill=pygame.image.load('Game_BG.png')
 LifeBlocks=(216,251,60)
+DeadBlock=(0,0,0)
 Width=1600
 Height=900
 Scale=15
@@ -53,14 +54,15 @@ def main():
     black=(0,0,0)
     end_it=False
     while (end_it==False):
-        screen.fill(ScreenFill)
+        # screen.fill(ScreenFill)
         myfont=pygame.font.SysFont("Britannic Bold", 40)
-        # nlabel=myfont.render("Welcome - Start Screen", 1, (255, 0, 0))
+        nlabel=myfont.render("Start Game", 1, (255, 255, 255))
         for event in pygame.event.get():
             if event.type==pygame.KEYUP:
                 if event.key==pygame.K_SPACE:
                     end_it=True
         screen.blit(bg,(0,0))
+        screen.blit(nlabel,(725,725))
         pygame.display.flip()
 
 
@@ -71,7 +73,7 @@ def main():
     run = True
     while run:
         clock.tick(fps)
-        screen.fill(ScreenFill)
+        screen.blit(ScreenFill, (0,0))
 
     #Event handlers
         for event in pygame.event.get():
@@ -83,7 +85,7 @@ def main():
                 if event.key == pygame.K_SPACE:
                     pause = not pause
 
-        Grid.Conway(off_color=ScreenFill, on_color=LifeBlocks, surface=screen, pause=pause)
+        Grid.Conway(off_color=DeadBlock, on_color=LifeBlocks, surface=screen, pause=pause)
 
     #Mouse click events
         if pygame.mouse.get_pressed()[0]:

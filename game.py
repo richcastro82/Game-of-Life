@@ -43,6 +43,8 @@ fps = 15
 #         clock.tick(15)
 
 
+
+
 def main():
     #Initialize Pygame
     Size=(Width, Height)
@@ -71,6 +73,12 @@ def main():
     Grid.board_seeding()
     pause=False
     run = True
+    def mouseDef():
+     #Mouse click events
+         if pygame.mouse.get_pressed()[0]:
+             mouseX, mouseY = pygame.mouse.get_pos()
+             Grid.mousePush(mouseX, mouseY)
+             
     while run:
         clock.tick(fps)
         screen.blit(ScreenFill, (0,0))
@@ -86,13 +94,8 @@ def main():
                     pause = not pause
 
         Grid.Conway(off_color=DeadBlock, on_color=LifeBlocks, surface=screen, pause=pause)
-
-    #Mouse click events
-        if pygame.mouse.get_pressed()[0]:
-            mouseX, mouseY = pygame.mouse.get_pos()
-            Grid.mousePush(mouseX, mouseY)
+        mouseDef()
         pygame.display.update()
-
     pygame.quit()
 
 

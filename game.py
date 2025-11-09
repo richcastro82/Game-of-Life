@@ -7,43 +7,69 @@
 # prearranged or completely random set of variables
 # until the model reaches a solid or stable state.
 
-#Import libraries
-import time
-import pygame
-import rules
+# Novenber 2025 UPDATE - fixing some things that I left incomplete.
+# Also, making a version that will display well on the Hackberry's 720p screen.
+# WE ALSO NEED TO STANDARDIZE OUR MAIN PROGRAM FILENAMES. USE 'MAIN.PY' FOR ALL OF THEM.
+# LETS ADD A PAUSE MENU TRIGGERED BY CLICKING 'P'
+# BUT WE'LL KEEP THE CURRENT 'SPACEBAR' TO FREEZE STATE
 
-#Variables for quick changes to visuals
-ScreenFill=pygame.image.load('Game_BG.png')
+
+#Import libraries
+import os, time, pygame, rules
+
+current_path = os.path.dirname(__file__)
+#2025 UPDATE TO PORT TO HACKBERRY
+Hackberry = False
+
+# GENERAL SETTINGS
 LifeBlocks=(216,251,60)
 DeadBlock=(0,0,0)
-Width=1600
-Height=900
-Scale=15
 Offset=1
-fps = 15
-
 
 
 def main():
     #Initialize Pygame
-    Size=(Width, Height)
     pygame.init()
+    fps=15
+    ScreenFill=pygame.image.load(current_path+'/assets/Game_BG.png')
+    Screen_Detect = pygame.display.Info()
+    if Screen_Detect.current_w == 720:
+        Hackberry = True
+        Width = Screen_Detect.current_w
+        Height = Screen_Detect.current_h
+        Scale = 10
+        bg = pygame.image.load(current_path+"/assets/hackberry_bg.jpg")
+
+    else:
+        Width=1600
+        Height=900
+        Scale=15
+        bg = pygame.image.load(current_path+"/assets/gameoflife.jpg")
+
+
+
+
+    Size=(Width, Height)
     pygame.display.set_caption("Conway's Game of Life by King Castro")
     screen = pygame.display.set_mode(Size)
     clock = pygame.time.Clock()
-    bg = pygame.image.load("gameoflife.jpg")
     black=(0,0,0)
     end_it=False
+
     while (end_it==False):
-        # screen.fill(ScreenFill)
         myfont=pygame.font.SysFont("Britannic Bold", 40)
-        nlabel=myfont.render("Start Game", 1, (255, 255, 255))
+        # nlabel=myfont.render("Slow", 1, (255, 255, 255))
+        # nlabel1=myfont.render("Start Game", 1, (255, 255, 255))
         for event in pygame.event.get():
             if event.type==pygame.KEYUP:
+                if event.key==pygame.K_RETURN:
+                    fps=10
+                    end_it=True
                 if event.key==pygame.K_SPACE:
                     end_it=True
         screen.blit(bg,(0,0))
-        screen.blit(nlabel,(725,725))
+        # screen.blit(nlabel,(625,625))
+        # screen.blit(nlabel1,(725,725))
         pygame.display.flip()
 
 
@@ -67,7 +93,7 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_ESCAPE:
+                if event.key == pygame.K_RETURN:
                     run = False
                 if event.key == pygame.K_SPACE:
                     pause = not pause
